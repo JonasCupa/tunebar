@@ -1,7 +1,5 @@
 import Stripe from 'stripe'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' })
@@ -11,6 +9,16 @@ export default async function handler(req, res) {
     console.log('Creating checkout session...')
     console.log('Request body:', req.body)
     
+    // Check if Stripe secret key is available
+    if (!process.env.STRIPE_SECRET_KEY) {
+      console.error('STRIPE_SECRET_KEY environment variable is not set')
+      return res.status(500).json({ 
+        error: 'Stripe secret key not configured',
+        details: 'Please check environment variables in Vercel'
+      })
+    }
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
     const { priceId, successUrl, cancelUrl } = req.body
 
     const sessionConfig = {
@@ -21,8 +29,8 @@ export default async function handler(req, res) {
         },
       ],
       mode: 'payment',
-      success_url: successUrl || `${process.env.VERCEL_URL}/success`,
-      cancel_url: cancelUrl || `${process.env.VERCEL_URL}`,
+      success_url: successUrl || 'https://tunebar-app.vercel.app/success',
+      cancel_url: cancelUrl || 'https://tunebar-app.vercel.app',
       billing_address_collection: 'auto',
       allow_promotion_codes: true,
       expires_at: Math.floor(Date.now() / 1000) + (30 * 60), // 30 minutes from now

@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     const sessionConfig = {
       line_items: [
         {
-          price: priceId || 'price_1S5TPHBDjzVf0zu7F120lqIl',
+          price: priceId || 'price_1S5Y40BoNk0b5ndu2nBU3Eou',
           quantity: 1,
         },
       ],
@@ -44,6 +44,16 @@ export default async function handler(req, res) {
       billing_address_collection: 'auto',
       allow_promotion_codes: true,
       expires_at: Math.floor(Date.now() / 1000) + (30 * 60), // 30 minutes from now
+      // Custom branding for TuneBar
+      custom_text: {
+        submit: {
+          message: 'Thank you for purchasing TuneBar! Your download will be available after payment.'
+        }
+      },
+      metadata: {
+        app_name: 'TuneBar',
+        business: 'TuneBar'
+      }
     }
 
     console.log('Session config:', sessionConfig)

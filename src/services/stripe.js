@@ -39,7 +39,9 @@ export const createCheckoutSession = async () => {
     if (!response.ok) {
       const errorData = await response.text()
       console.error('Backend error:', errorData)
-      throw new Error(`Backend error: ${response.status}`)
+      console.error('Response status:', response.status)
+      console.error('Response headers:', response.headers)
+      throw new Error(`Backend error: ${response.status} - ${errorData}`)
     }
 
     const sessionData = await response.json()

@@ -6,12 +6,10 @@ import Success from './Success.jsx'
 
 function Home() {
   const [isMac, setIsMac] = useState(false)
-  const [activeImage, setActiveImage] = useState(0)
 
   const screenshots = [
-    { src: "/assets/webpic1.png", alt: "TuneBar interface" },
-    { src: "/assets/webpic2.png", alt: "TuneBar menu bar view" }
-  ] // Updated to use new webpic images
+    { src: "/assets/tunebar-preview.gif", alt: "TuneBar app preview" }
+  ] // Updated to use animated GIF preview
 
   useEffect(() => {
     setIsMac(/Mac|Macintosh|Mac OS X/i.test(navigator.userAgent))
@@ -81,20 +79,11 @@ function Home() {
               <div className="screenshot-container">
                 <div className="screenshot-main glass floating">
                   <img 
-                    src={screenshots[activeImage].src}
-                    alt={screenshots[activeImage].alt}
+                    src={screenshots[0].src}
+                    alt={screenshots[0].alt}
                   />
                 </div>
-                <div className="screenshot-switcher">
-                  {screenshots.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`switcher-dot ${activeImage === index ? 'active' : ''}`}
-                      onClick={() => setActiveImage(index)}
-                      aria-label={`View screenshot ${index + 1}`}
-                    />
-                  ))}
-                </div>
+                {/* Single animated GIF - no switcher needed */}
               </div>
             </div>
           </section>

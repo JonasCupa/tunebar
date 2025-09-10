@@ -11,7 +11,7 @@ function Home() {
   const screenshots = [
     { src: "/assets/webpic1.png", alt: "TuneBar interface" },
     { src: "/assets/webpic2.png", alt: "TuneBar menu bar view" }
-  ]
+  ] // Updated to use new webpic images
 
   useEffect(() => {
     setIsMac(/Mac|Macintosh|Mac OS X/i.test(navigator.userAgent))

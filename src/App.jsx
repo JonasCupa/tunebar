@@ -9,8 +9,8 @@ function Home() {
   const [activeImage, setActiveImage] = useState(0)
 
   const screenshots = [
-    { src: "/assets/tunebar.png", alt: "TuneBar interface" },
-    { src: "/assets/tunebar2.png", alt: "TuneBar menu bar view" }
+    { src: "/assets/webpic1.png", alt: "TuneBar interface" },
+    { src: "/assets/webpic2.png", alt: "TuneBar menu bar view" }
   ]
 
   useEffect(() => {

@@ -8,8 +8,8 @@ function Home() {
   const [isMac, setIsMac] = useState(false)
 
   const screenshots = [
-    { src: "/assets/tunebar-preview.gif", alt: "TuneBar app preview" }
-  ] // Updated to use animated GIF preview
+    { src: "/assets/tunebar-preview-hq.gif", alt: "TuneBar app preview" }
+  ] // Updated to use high-quality animated GIF preview (30fps, 1000px)
 
   useEffect(() => {
     setIsMac(/Mac|Macintosh|Mac OS X/i.test(navigator.userAgent))
